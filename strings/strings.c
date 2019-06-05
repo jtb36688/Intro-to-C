@@ -10,7 +10,7 @@
 int string_length(char *s)
 {
     int count = 0;
-    while (*(s + (count+1))) {
+    while (*(s + (count))) {
         count++;
     }
     return count;
