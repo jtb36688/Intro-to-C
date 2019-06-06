@@ -23,13 +23,19 @@ int string_length(char *s)
 */
 void string_copy(char *x, char *y)
 {
-    int count = 1;
-    while (*(y + count)) {
-        x[count] = y[count];
-        count++;
+    int count;
+    for (int i = 0; y[i] != '\0' ; i++) {
+        x[i] = y[i];
+        count = i+1;
     }
     x[count] = '\0';
 }
+
+// char *string = "hello, world";
+// char empty[20];
+
+// string_copy(empty, string);
+// printf("%c\n", empty);
 
 /*
     Searches the input string `str` for the first instance of the 
@@ -69,7 +75,7 @@ char *find_string(char *haystack, char *needle)
                 if (*(haystack + count + x) != needle[x]) {
                     break;
                 }
-                if (x = string_length(needle)) {
+                if (x == string_length(needle)) {
                     return (haystack + count);
                 }
             } 
