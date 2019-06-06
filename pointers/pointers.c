@@ -49,7 +49,7 @@ char *find_char(char *str, char c)
         }
         count++;
     }
-    return "No Match Found"
+    return "No Match Found";
 }
 
 /*
@@ -65,12 +65,18 @@ char *find_string(char *haystack, char *needle)
     int count = 1;
     while (*(haystack + count)) {
         if (*(haystack + count) == needle[0]) {
-            for (int x = 0; x < string_length(needle); i++)
-                
+            for (int x = 1; x <= string_length(needle); x++) {
+                if (*(haystack + count + x) != needle[x]) {
+                    break;
+                }
+                if (x = string_length(needle)) {
+                    return (haystack + count);
+                }
+            } 
         }
         count++;
     }
-    return "No Match Found"
+    return "No Match Found";
 }
 
 #ifndef TESTING
