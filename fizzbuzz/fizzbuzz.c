@@ -11,26 +11,22 @@
 int fizzbuzz(int n)
 {
     int count = 0;
-    char *fizzbuzz = "FizzBuzz";
-    char *fizz = "Fizz";
-    char *buzz = "Buzz";
-    void printstring(int *str, int len) {
-        for (int i = 0; i < len; i++)
-            printf("%c", *(str + i))
-    }
     for (int x = 0; x < n; x++) {
-        count ++;
-        if ( (count % 3 == 0) && (count % 5 == 0) ) {
-            printf("FizzBuzz");
+        if ( (x % 3 == 0) && (x % 5 == 0) ) {
+            printf("FizzBuzz\n");
             continue;
         }
-        else if (count % 3 == 0) {
-            printf("Fizz");
+        else if (x % 3 == 0) {
+            printf("Fizz\n");
         }
-        else if (count % 5 == 0) {
-            printf("Buzz");
+        else if (x % 5 == 0) {
+            printf("Buzz\n");
         }
-}
+        else {
+            count++;
+        }
+    }
+    return count;
 }
 
 #ifndef TESTING

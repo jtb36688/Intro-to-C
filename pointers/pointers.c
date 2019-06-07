@@ -1,5 +1,13 @@
 #include <stdio.h>
 
+int string_length(char *s)
+{
+    int count = 0;
+    while (*(s + (count))) {
+        count++;
+    }
+    return count;
+}
 /*
     Given a character pointer x (that points to an array of chars), and a
     character pointer y, copies the character contents of y over to x. Pointer
@@ -15,7 +23,13 @@
 */
 void string_copy(char *x, char *y)
 {
-
+    int count = 0;
+    while(*y != '\0') {
+        x[count] = *y;
+        y++;
+        count++;
+    }
+    x[count] = '\0';
 }
 
 /*
@@ -28,7 +42,12 @@ void string_copy(char *x, char *y)
 */
 char *find_char(char *str, char c)
 {
-
+    while (*str != '\0') {
+        if (*str == c) {
+            return (char*)str;
+        }
+        str++;
+    }
 }
 
 /*
@@ -41,7 +60,23 @@ char *find_char(char *str, char c)
 */
 char *find_string(char *haystack, char *needle)
 {
-
+    int j = 0, i = 0;
+    char *strpointer;
+    while (haystack[j] != '\0' && needle[i] != '\0'){
+        if (haystack[j] == needle[i]){
+            i++;
+            j++;
+            strpointer = &haystack[j-i];
+        } else{
+            j++;
+            i = 0;
+        }
+    }
+    if (needle[i] == '\0'){
+        return strpointer;
+    } else{
+        return NULL;
+    }
 }
 
 #ifndef TESTING

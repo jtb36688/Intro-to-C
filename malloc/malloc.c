@@ -12,7 +12,16 @@
 */
 char *string_dup(char *src)
 {
+    char *newstring = malloc(string_length(src));
+    int count = 0;
+    while (*src != '\0') {
+        newstring[count] = *src;
+        src++;
+        count++;
+    }
+    newstring[count] = '\0';
 
+    return newstring;
 }
 
 /*
@@ -24,7 +33,14 @@ char *string_dup(char *src)
 */
 void mem_copy(void *dest, const void *src, int n)
 {
+    char *d = (char*)dest;
+    char *s = (char*)src;
 
+    for (int i = 0; i < n; i++){
+        d[i] = s[i];
+    }
+
+    dest = d;
 }
 
 /*
@@ -38,9 +54,20 @@ void mem_copy(void *dest, const void *src, int n)
     
     Do not use the `realloc` function from the standard libary.
 */
-void *resize_memory(void *ptr, int old_size, int new_size)
-{
+void *resize_memory(void *ptr, int old, int new) {
+    char *d = (char*)ptr;
+    char *pointer = malloc(new);
 
+    for (int i = 0; i < old; i++){
+            pointer[i] = d[i];
+    }
+
+    if (old > new){
+        pointer[new] = '\0';
+    } else {
+        pointer[new-1] = '\0';
+    }
+    return pointer;
 }
 
 #ifndef TESTING
