@@ -2,14 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "lib.h"
-int string_length(char *s)
-{
-    int count = 0;
-    while (*(s + (count))) {
-        count++;
-    }
-    return count;
-}
+
 /*
     Duplicates the input string by dynamically allocating memory for 
     the duplicate string using `malloc` and then copying the string
@@ -21,12 +14,12 @@ char *string_dup(char *src)
 {
     char *newstring = malloc(string_length(src));
     int count = 0;
-    while (*src 1 != '\0') {
+    while (*src != '\0') {
         newstring[count] = *src;
         src++;
         count++;
     }
-    newstring[count] = '\0'
+    newstring[count] = '\0';
 
     return newstring;
 }
@@ -63,7 +56,7 @@ void mem_copy(void *dest, const void *src, int n)
 */
 void *resize_memory(void *ptr, int old, int new) {
     char *d = (char*)ptr;
-    char *pointer = malloc(new)
+    char *pointer = malloc(new);
 
     for (int i = 0; i < old; i++){
             pointer[i] = d[i];
