@@ -60,19 +60,22 @@ char *find_char(char *str, char c)
 */
 char *find_string(char *haystack, char *needle)
 {
+    int j = 0, i = 0;
     char *strpointer;
-    for (int i = 0; haystack[i] != '\0' ; i++) {
-        if (haystack[i] == needle[0]) {
-            for (int x = 1; x <= string_length(needle); x++) {
-                if (*(haystack + i + x) != needle[x]) {
-                    break;
-                }
-                if (x == string_length(needle)) {
-                    strpointer = &haystack[x-i];
-                    return strpointer;
-                }
+    while (haystack[j] != '\0' && needle[i] != '\0'){
+        if (haystack[j] == needle[i]){
+            i++;
+            j++;
+            strpointer = &haystack[j-i];
+        } else{
+            j++;
+            i = 0;
         }
     }
+    if (needle[i] == '\0'){
+        return strpointer;
+    } else{
+        return NULL;
     }
 }
 
