@@ -20,6 +20,14 @@ int string_length(char *s)
 char *string_dup(char *src)
 {
     char *newstring = malloc(string_length(src));
+    int count = 0;
+    while (*src 1 != '\0') {
+        newstring[count] = *src;
+        src++;
+        count++;
+    }
+    newstring[count] = '\0'
+
     return newstring;
 }
 
