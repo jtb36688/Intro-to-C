@@ -23,19 +23,14 @@ int string_length(char *s)
 */
 void string_copy(char *x, char *y)
 {
-    int count;
-    for (int i = 0; y[i] != '\0' ; i++) {
-        x[i] = y[i];
-        count = i+1;
+    int count = 0;
+    while(*y != '\0') {
+        x[count] = *y;
+        y++;
+        count++;
     }
     x[count] = '\0';
 }
-
-// char *string = "hello, world";
-// char empty[20];
-
-// string_copy(empty, string);
-// printf("%c\n", empty);
 
 /*
     Searches the input string `str` for the first instance of the 
@@ -47,15 +42,12 @@ void string_copy(char *x, char *y)
 */
 char *find_char(char *str, char c)
 {
-
-    int count = 1;
-    while (*(str + count)) {
-        if (*(str + count) == c) {
-            return (str + count);
+    while (*str != '\0') {
+        if (*str == c) {
+            return (char*)str;
         }
-        count++;
+        str++;
     }
-    return "No Match Found";
 }
 
 /*
@@ -68,21 +60,20 @@ char *find_char(char *str, char c)
 */
 char *find_string(char *haystack, char *needle)
 {
-    int count = 1;
-    while (*(haystack + count)) {
-        if (*(haystack + count) == needle[0]) {
+    char *strpointer;
+    for (int i = 0; haystack[i] != '\0' ; i++) {
+        if (haystack[i] == needle[0]) {
             for (int x = 1; x <= string_length(needle); x++) {
-                if (*(haystack + count + x) != needle[x]) {
+                if (*(haystack + i + x) != needle[x]) {
                     break;
                 }
                 if (x == string_length(needle)) {
-                    return (haystack + count);
+                    strpointer = &haystack[x-i];
+                    return strpointer;
                 }
-            } 
         }
-        count++;
     }
-    return "No Match Found";
+    }
 }
 
 #ifndef TESTING
